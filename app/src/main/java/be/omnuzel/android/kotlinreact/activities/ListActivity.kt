@@ -39,7 +39,9 @@ class ListActivity : AppCompatActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map { it.results }
-                .subscribe { setRecyclerViewForResult(it) }
+                .subscribe {
+                    it?.let { setRecyclerViewForResult(it) } ?: toastThis("error", withContext = this)
+                }
     }
 
     private fun setRecyclerViewForResult(results: List<OMDBResult>) {
