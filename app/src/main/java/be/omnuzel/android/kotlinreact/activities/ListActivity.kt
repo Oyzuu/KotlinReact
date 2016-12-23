@@ -8,6 +8,7 @@ import be.omnuzel.android.kotlinreact.R
 import be.omnuzel.android.kotlinreact.adapters.OMDBResultAdapter
 import be.omnuzel.android.kotlinreact.rest.OMDBApi
 import be.omnuzel.android.kotlinreact.rest.entities.OMDBResult
+import be.omnuzel.android.kotlinreact.utils.onTextChanged
 import be.omnuzel.android.reactivetest.utils.toastThis
 import kotlinx.android.synthetic.main.activity_list.*
 import rx.android.schedulers.AndroidSchedulers
@@ -24,9 +25,10 @@ class ListActivity : AppCompatActivity() {
 
         recyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayout.VERTICAL))
         recyclerView.adapter = mAdapter
-        searchButton.setOnClickListener { launchSearch() }
+        searchField.onTextChanged { launchSearch() }
     }
 
+    //region Methods
     private fun launchSearch() {
         val searchString = searchField.text.toString().trim()
 
@@ -48,5 +50,6 @@ class ListActivity : AppCompatActivity() {
         mAdapter.setResultsAsDataSet(results)
         mAdapter.notifyDataSetChanged()
     }
+    //endregion
 
 }

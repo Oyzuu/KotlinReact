@@ -8,34 +8,21 @@
     android:layout_height="match_parent"
     tools:context="be.omnuzel.android.kotlinreact.activities.ListActivity">
 
-    <LinearLayout
-        android:id="@+id/searchLayout"
+    <EditText
+        android:id="@+id/searchField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_gravity="center"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp">
-
-        <EditText
-            android:id="@+id/searchField"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"/>
-
-        <ImageButton
-            android:id="@+id/searchButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_search"
-            style="@style/Base.Widget.AppCompat.Button.Borderless"/>
-    </LinearLayout>
+        android:layout_marginEnd="16dp"
+        android:hint="@string/searchFieldHint"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/searchLayout"
+        android:layout_below="@id/searchField"
         app:layoutManager="LinearLayoutManager"
         tools:listItem="@layout/result_cell"/>
+
 </RelativeLayout>

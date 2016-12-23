@@ -5,7 +5,7 @@ import be.omnuzel.android.kotlinreact.rest.services.OMDBService
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import rx.Single
+import rx.Observable
 import rx.schedulers.Schedulers
 
 /**
@@ -28,9 +28,9 @@ object OMDBApi {
         service = retrofit.create(OMDBService::class.java)
     }
 
-    fun getResults(forTitle: String): Single<OMDBResultList> =
+    fun getResults(forTitle: String): Observable<OMDBResultList> =
             service.getResults(forTitle, DEFAULT_PAGE_NUMBER)
 
-    fun getResults(forTitle: String, onPage: Int): Single<OMDBResultList> =
+    fun getResults(forTitle: String, onPage: Int): Observable<OMDBResultList> =
             service.getResults(forTitle, onPage)
 }

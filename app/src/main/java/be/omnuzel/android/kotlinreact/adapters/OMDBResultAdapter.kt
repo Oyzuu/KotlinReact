@@ -32,7 +32,7 @@ class OMDBResultAdapter : RecyclerView.Adapter<OMDBResultViewHolder>() {
         holder?.setType(result.type ?: "")
     }
 
-    public fun setResultsAsDataSet(results: List<OMDBResult>) {
+    fun setResultsAsDataSet(results: List<OMDBResult>) {
         mDataSet = results
     }
 }
