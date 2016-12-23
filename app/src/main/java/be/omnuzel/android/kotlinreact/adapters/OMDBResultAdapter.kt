@@ -34,5 +34,11 @@ class OMDBResultAdapter : RecyclerView.Adapter<OMDBResultViewHolder>() {
 
     fun setResultsAsDataSet(results: List<OMDBResult>) {
         mDataSet = results
+        notifyDataSetChanged()
+    }
+
+    fun clearDataset() {
+        mDataSet = ArrayList()
+        notifyDataSetChanged()
     }
 }
