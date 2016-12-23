@@ -6,10 +6,11 @@ import android.support.v7.widget.DividerItemDecoration
 import android.widget.LinearLayout
 import be.omnuzel.android.kotlinreact.R
 import be.omnuzel.android.kotlinreact.adapters.OMDBResultAdapter
+import be.omnuzel.android.kotlinreact.extensions.checkValidityForOMDB
+import be.omnuzel.android.kotlinreact.extensions.onTextChanged
+import be.omnuzel.android.kotlinreact.extensions.subscribeAndSetResults
 import be.omnuzel.android.kotlinreact.rest.OMDBApi
 import be.omnuzel.android.kotlinreact.rest.entities.OMDBResultList
-import be.omnuzel.android.kotlinreact.utils.onTextChanged
-import be.omnuzel.android.kotlinreact.utils.subscribeAndSetResults
 import kotlinx.android.synthetic.main.activity_list.*
 import rx.Single
 import rx.subjects.PublishSubject
@@ -18,7 +19,6 @@ import java.util.concurrent.TimeUnit
 class ListActivity : AppCompatActivity() {
 
     private var mAdapter: OMDBResultAdapter = OMDBResultAdapter()
-    private var mCurrentPage = 1
     private val mSubject: PublishSubject<Single<OMDBResultList>> = PublishSubject.create()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,12 +39,11 @@ class ListActivity : AppCompatActivity() {
     private fun launchSearch() {
         val searchString = searchField.text.toString().trim()
 
-        if (searchString.length < 2) {
+        if (searchString.checkValidityForOMDB()) {
+            mSubject.onNext(OMDBApi.getResults(searchString))
+        } else {
             mAdapter.clearDataset()
-            return
         }
-
-        mSubject.onNext(OMDBApi.getResults(searchString, mCurrentPage))
     }
     //endregion
 

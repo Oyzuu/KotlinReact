@@ -1,4 +1,4 @@
-package be.omnuzel.android.kotlinreact.utils
+package be.omnuzel.android.kotlinreact.extensions
 
 import be.omnuzel.android.kotlinreact.adapters.OMDBResultAdapter
 import be.omnuzel.android.kotlinreact.rest.entities.OMDBResultList

@@ -1,4 +1,4 @@
-package be.omnuzel.android.kotlinreact.utils
+package be.omnuzel.android.kotlinreact.extensions
 
 import android.text.Editable
 import android.text.TextWatcher
